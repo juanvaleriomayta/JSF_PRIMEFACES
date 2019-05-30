@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="REPORTES" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8b533fa5-d274-4da2-86b5-f89c70480f04">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SQLSERVER_REPORTE"/>
+	<property name="net.sf.jasperreports.print.create.bookmarks" value="false"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM VW_LISTAR_ALUMNO]]>
+	</queryString>
+	<field name="CODALU" class="java.lang.Integer"/>
+	<field name="NOMALU" class="java.lang.String"/>
+	<field name="APEALU" class="java.lang.String"/>
+	<field name="DNIALU" class="java.lang.String"/>
+	<field name="DIRALU" class="java.lang.String"/>
+	<field name="FECNACALU" class="java.lang.String"/>
+	<field name="CODUBI" class="java.lang.Integer"/>
+	<field name="NOMUBI" class="java.lang.String"/>
+	<group name="CODALU">
+		<groupExpression><![CDATA[$F{CODALU}]]></groupExpression>
+	</group>
+	<group name="NOMALU">
+		<groupExpression><![CDATA[$F{NOMALU}]]></groupExpression>
+	</group>
+	<group name="APEALU">
+		<groupExpression><![CDATA[$F{APEALU}]]></groupExpression>
+	</group>
+	<group name="DNIALU">
+		<groupExpression><![CDATA[$F{DNIALU}]]></groupExpression>
+	</group>
+	<group name="DIRALU">
+		<groupExpression><![CDATA[$F{DIRALU}]]></groupExpression>
+	</group>
+	<group name="FECNACALU">
+		<groupExpression><![CDATA[$F{FECNACALU}]]></groupExpression>
+	</group>
+	<group name="CODUBI">
+		<groupExpression><![CDATA[$F{CODUBI}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="122" splitType="Stretch">
+			<staticText>
+				<reportElement x="40" y="50" width="470" height="61" uuid="458c99d1-29e2-43cd-aab7-2ab3b7dd0644"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE ALUMNOS]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="160" height="60" uuid="79a4c6eb-ed9c-4bb3-ae36-2d7affafc254"/>
+				<imageExpression><![CDATA["C:/Users/Juan-Valerio/Documents/NetBeansProjects/JSF_PRIMEFACES/JasperReportSqlServer/web/Vistas/Reportes/logo_club-alumnos-1.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="-1" y="5" width="95" height="30" uuid="40287650-0f13-4654-bd18-6c5f2797b059"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="94" y="5" width="92" height="30" uuid="7abfc701-a101-426b-9a34-2340e9379c40"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[APELLIDOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="186" y="5" width="92" height="30" uuid="63bc7fdf-9310-42e9-9e10-244cf4255976"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° DNI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="278" y="5" width="92" height="30" uuid="515de002-bfc7-4de8-9234-fa8993f054e3"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIRECCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="5" width="92" height="30" uuid="f42b3103-fbe5-4886-8c3e-74b4847be4ad"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA DE NACIMIENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="462" y="5" width="92" height="30" uuid="3e272ab8-48d1-482a-b40d-9d1a8d49a1db"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[UBIGEO]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="-1" y="0" width="95" height="30" uuid="9abf2e92-57c9-4a88-9458-375e79a94c24"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{NOMALU}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="94" y="0" width="92" height="30" uuid="7cc2dbec-d2e4-4985-b5e5-06527063e86c"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{APEALU}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="186" y="0" width="92" height="30" uuid="2e193ad6-9ec8-481e-96c4-321b2f96b5d1"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DNIALU}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="278" y="0" width="92" height="30" uuid="328cbc99-229e-4219-ba85-7d542e334408"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DIRALU}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="370" y="0" width="92" height="30" uuid="e1ae7f77-9970-403c-b009-49953c6c457e"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{FECNACALU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="462" y="0" width="92" height="30" uuid="3c9b8b4f-8ebe-4134-8bd7-d00617b96734"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{NOMUBI}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

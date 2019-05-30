@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Alumno</title>
+    </h:head>
+    <h:body>
+        <h:form id="formLista">
+            <p:growl id="msg" showDetail="true" autoUpdate="true"/>
+
+            <p:dataTable id="dataAlumno" value="#{alumnoC.listAlu}" var="alu" widgetVar="wdlaData">
+                <f:facet name="header">
+                    <p:commandButton value="Registrar" 
+                                     actionListener="#{alumnoC.setAccionAlu('Registrar')}" 
+                                     oncomplete="PF('wdlgData').show();" 
+                                     update=":dlgData"/>
+                    <div>
+                        <h:commandLink>
+                            <h:graphicImage url="../Reportes/xls-icons-0.png" width="61px"/>
+                            <p:dataExporter type="xls" target="dataAlumno" fileName="Report" />
+                        </h:commandLink>
+
+                        <h:commandLink>
+                            <h:graphicImage url="../Reportes/PDF-logo.png" width="4%"/>
+                            <p:dataExporter type="pdf" target="dataAlumno" fileName="Report" pageOnly="true"/>
+                        </h:commandLink>
+                    </div>
+                </f:facet>
+
+                <p:column headerText="NOMBRES">
+                    <h:outputText value="#{alu.NOMALU}"/>
+                </p:column>
+                <p:column headerText="APELLIDOS">
+                    <h:outputText value="#{alu.APEALU}"/>
+                </p:column>
+                <p:column headerText="N° DNI">
+                    <h:outputText value="#{alu.DNIALU}"/>
+                </p:column>
+                <p:column headerText="DIRECCIÓN">
+                    <h:outputText value="#{alu.DIRALU}"/>
+                </p:column>
+                <p:column headerText="FECHA DE NACIMIENTO">
+                    <h:outputText value="#{alu.FECNACALU}"/>
+                </p:column>
+                <p:column headerText="UBIGEO">
+                    <h:outputText value="#{alu.NOMUBI}"/>
+                </p:column>
+                <p:column exportable="false">
+                    <p:commandButton value="Modificar" style="display: none"
+                                     actionListener="#{alumnoC.leerAlumno(alu.CODALU)}" 
+                                     oncomplete="PF('wdlgData').show();"
+                                     update=":dlgData"/><br/>
+                    <p:commandButton value="Eliminar" 
+                                     actionListener="#{alumnoC.eliminarAlumno(alu)}" 
+                                     update="dataAlumno">
+                        <p:confirm header="Confirmation" message="¿Deseas Eliminar Alumno? " icon="ui-icon-alert" />
+                    </p:commandButton>
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" 
+                                         icon="ui-icon-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" 
+                                         icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </p:column>
+                <p:column exportable="false">
+                    <p:commandLink  ajax="false" actionListener="#{alumnoC.REPORTE_PDF_ALUMNO(CodigoAlumno)}">
+                        <h:graphicImage url="../Reportes/PDF-logo.png" width="50%"/>
+                    </p:commandLink>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+
+        <p:dialog  showEffect="explode" 
+                   modal="true" 
+                   hideEffect="explode" 
+                   header="Actualizar Alumnos" 
+                   widgetVar="wdlgData" 
+                   id="dlgData">
+            <h:form id="create">
+                <h:panelGrid columns="2" cellpadding="10">
+                    <p:outputLabel value="NOMBRES"/>
+                    <p:inputText value="#{alumnoC.alu.NOMALU}" required="true"/>
+                    <p:outputLabel value="APELLIDOS"/>
+                    <p:inputText value="#{alumnoC.alu.APEALU}" required="true"/>
+                    <p:outputLabel for="dni" value="N° DNI"/>
+                    <p:inputText id="dni" value="#{alumnoC.alu.DNIALU}" required="true" maxlength="8"/>
+                    <p:outputLabel value="DIRECCIÓN"/>
+                    <p:inputText value="#{alumnoC.alu.DIRALU}" required="true"/>
+                    <p:outputLabel value="FECHA DE NACIMIENTO"/>
+                    <p:inputMask value="#{alumnoC.alu.FECNACALU}" required="true" mask="99/99/9999"/>
+                    <p:outputLabel value="UBIGEO"/>
+                    <p:autoComplete id="Ubi" maxResults="5" required="true" dropdown="true" minQueryLength="5" effect="fade"
+                                    value="#{alumnoC.alu.NOMUBI}" 
+                                    completeMethod="#{alumnoC.completeTextUbigeo}"/>
+
+                    <p:commandButton value="#{alumnoC.accionAlu}" 
+                                     actionListener="#{alumnoC.operarAlumno()}" 
+                                     update="dlgData :formLista:dataAlumno"/>
+                </h:panelGrid>
+            </h:form>
+
+        </p:dialog>
+    </h:body>
+</html>
+
