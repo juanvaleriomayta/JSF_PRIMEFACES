@@ -50,7 +50,7 @@
                 <p:column headerText="UBIGEO">
                     <h:outputText value="#{alu.NOMUBI}"/>
                 </p:column>
-                <p:column exportable="false">
+                <p:column>
                     <p:commandButton value="Modificar" style="display: none"
                                      actionListener="#{alumnoC.leerAlumno(alu.CODALU)}" 
                                      oncomplete="PF('wdlgData').show();"
@@ -67,7 +67,7 @@
                                          icon="ui-icon-close" />
                     </p:confirmDialog>
                 </p:column>
-                <p:column exportable="false">
+                <p:column style="display: none">
                     <p:commandLink  ajax="false" actionListener="#{alumnoC.REPORTE_PDF_ALUMNO(CodigoAlumno)}">
                         <h:graphicImage url="../Reportes/PDF-logo.png" width="50%"/>
                     </p:commandLink>
