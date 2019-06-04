@@ -1,6 +1,3 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
@@ -15,19 +12,23 @@
 
             <p:dataTable id="dataAlumno" value="#{alumnoC.listAlu}" var="alu" widgetVar="wdlaData">
                 <f:facet name="header">
+                    <p:commandButton style="display: none" value="Manual" onclick="PF('pdfview').show();"/>
                     <p:commandButton value="Registrar" 
                                      actionListener="#{alumnoC.setAccionAlu('Registrar')}" 
                                      oncomplete="PF('wdlgData').show();" 
                                      update=":dlgData"/>
                     <div>
-                        <h:commandLink>
+                        <h:commandLink style="display: none">
                             <h:graphicImage url="../Reportes/xls-icons-0.png" width="61px"/>
-                            <p:dataExporter type="xls" target="dataAlumno" fileName="Report" />
+                            <p:dataExporter type="xls" target="dataAlumno" fileName="ReportXLS" />
                         </h:commandLink>
-
-                        <h:commandLink>
+                        <h:commandLink style="display: none">
                             <h:graphicImage url="../Reportes/PDF-logo.png" width="4%"/>
-                            <p:dataExporter type="pdf" target="dataAlumno" fileName="Report" pageOnly="true"/>
+                            <p:dataExporter type="pdf" target="dataAlumno" fileName="ReportPDF"/>
+                        </h:commandLink>
+                        <h:commandLink style="display: none">
+                            <h:graphicImage url="../Reportes/csv.png" width="4%"/>
+                            <p:dataExporter type="csv" target="dataAlumno" fileName="ReportCSV" />
                         </h:commandLink>
                     </div>
                 </f:facet>
@@ -50,7 +51,7 @@
                 <p:column headerText="UBIGEO">
                     <h:outputText value="#{alu.NOMUBI}"/>
                 </p:column>
-                <p:column>
+                <p:column width="10%" exportable="false">
                     <p:commandButton value="Modificar" style="display: none"
                                      actionListener="#{alumnoC.leerAlumno(alu.CODALU)}" 
                                      oncomplete="PF('wdlgData').show();"
@@ -67,13 +68,24 @@
                                          icon="ui-icon-close" />
                     </p:confirmDialog>
                 </p:column>
-                <p:column style="display: none">
+                <p:column exportable="false">
                     <p:commandLink  ajax="false" actionListener="#{alumnoC.REPORTE_PDF_ALUMNO(CodigoAlumno)}">
                         <h:graphicImage url="../Reportes/PDF-logo.png" width="50%"/>
                     </p:commandLink>
                 </p:column>
             </p:dataTable>
         </h:form>
+
+        <!--MANUAL DE LA DEMO-->
+        <p:dialog showEffect="explode" modal="true" hideEffect="explode"  widgetVar="pdfview" resizable="false">
+            <p:panel header="MANUAL DE USUARIO">
+                <iframe 
+                    src="https://www.yumpu.com/es/embed/view/b9QHGFaXlCDuNWr4" 
+                    width="700px" height="500px" frameborder="0" allowfullscreen="true" 
+                    allowtransparency="true">
+                </iframe>
+            </p:panel>
+        </p:dialog>
 
         <p:dialog  showEffect="explode" 
                    modal="true" 
@@ -94,7 +106,12 @@
                     <p:outputLabel value="FECHA DE NACIMIENTO"/>
                     <p:inputMask value="#{alumnoC.alu.FECNACALU}" required="true" mask="99/99/9999"/>
                     <p:outputLabel value="UBIGEO"/>
-                    <p:autoComplete id="Ubi" maxResults="5" required="true" dropdown="true" minQueryLength="5" effect="fade"
+                    <p:autoComplete id="Ubi" 
+                                    maxResults="5" 
+                                    required="true" 
+                                    dropdown="true" 
+                                    minQueryLength="5" 
+                                    effect="fade"
                                     value="#{alumnoC.alu.NOMUBI}" 
                                     completeMethod="#{alumnoC.completeTextUbigeo}"/>
 

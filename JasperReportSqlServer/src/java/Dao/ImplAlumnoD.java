@@ -178,7 +178,7 @@ public class ImplAlumnoD extends Dao implements AlumnoI {
         return listaAlumno;
     }
 
-    //METODO REPORTE_PDF_ALUMNO PARA DESCARGAR EL REPORTE
+    //METODO REPORTE_PDF_ALUMNO PARA LA DESCARGA
     public void REPORTE_PDF_ALUMNO(Map parameters) throws JRException, IOException, Exception {
         Conectar();
         File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("Vistas\\Reportes\\REPORTES.jasper"));
